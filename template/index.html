@@ -1,0 +1,58 @@
+<!---Initialize Home Page--->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/styling.css')}}">
+    </head>
+    <body>
+        <!---Initialize structure of Title and house picture--->
+        <div class = "title">
+            <h1>Power Predictor System</h1>
+        </div>
+        <!---Links/buttons to other websites--->
+        <div id = "menu-outer">
+            <div class = "table">
+                <ul id = "horizontal-list">
+                    <li><a href = "https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36" target="_blank" class = "link"><span class = "titleLink">the National Weather Service</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <!---Containerize main page for styling--->
+        <div class = "page">
+            <!---Containerize paragraph and form for styling--->
+            <div class = "container">
+                <div class = "intro">
+                    <b>
+                        <p class = "Note"><b> Note: Enter the value </b></p>
+                    </b>
+                </div>
+                <br>
+
+                <!---Initialize form structure and inputs, set method to "POST"--->
+                <form action = "{{url_for('predict')}}" method = "post" class = "info">
+                    <input type="radio" name="options" id="LinearRegression" value="LinearRegression"> LinearRegression </input><br>
+                    <input type="radio" name="options" id="RandomForest" value="RandomForest">RandomForest </input><br>
+<!--                    <label><input type="checkbox" name="LinearRegression" value="LinearRegression"/> LinearRegression</label>* </span>-->
+<!--                    <label><input type="checkbox" name="RandomForest" value="RandomForest"/> RandomForest</label>* </span>-->
+                    <input type="text" id="name" name="AverageTemp" placeholder="AverageTemp" required="required"/><span style="color:red"> * </span>
+                    <br>
+                    <br>
+                    <input type="text" id="age" name="Average_Wind_peed" placeholder="Average_Wind_peed" required="required"/><span style="color:red"> * </span>
+                    <br>
+                    <br>
+                    <input type="text" id="rooms" name="Humidity" placeholder="Humidity" required="required"/><span style="color:red"> * </span>
+                    <br>
+                    <br>
+
+                    <button type="submit" class="btn">Predict</button>
+                </form>
+                <br>
+                <!---Set placeholder for prediction output--->
+                <div class ="pred">
+                    <p class = "result"><b>{{ prediction_text }}</b></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
